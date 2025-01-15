@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Product Page</title>
+  <link rel="stylesheet" href="category-page-styles.css">
+</head>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+  }
+  
+  .container {
+    width: 90%;
+    margin: 0 auto;
+  }
+  
+  .breadcrumb {
+    margin: 20px 0;
+  }
+  
+  .breadcrumb a {
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  .main-content {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .filters {
+    width: 20%;
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .filters h2 {
+    font-size: 20px;
+  }
+  
+  .filter-section {
+    margin-bottom: 20px;
+  }
+  
+  .filter-section h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .filter-section ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .filter-section ul li {
+    margin: 5px 0;
+  }
+  
+  .filter-section ul li a {
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .price-slider {
+    width: 100%;
+  }
+  
+  .price-range {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  
+  .color-options {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .color {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+  }
+  
+  .color.red {
+    background-color: red;
+  }
+  
+  .color.green {
+    background-color: green;
+  }
+  
+  .color.blue {
+    background-color: blue;
+  }
+  
+  .color.yellow {
+    background-color: yellow;
+  }
+  
+  .color.orange {
+    background-color: orange;
+  }
+  
+  .color.black {
+    background-color: black;
+  }
+  
+  .size-options button {
+    padding: 5px 10px;
+    margin: 5px 0;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 62px;
+    cursor: pointer;
+  }
+  
+  .size-options .selected {
+    background-color: black;
+    color: #F0F0F0;
+  }
+  
+  .product-list {
+    width: 80%;
+  }
+  
+  .product-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .products {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  
+  .product {
+    background: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .product img {
+    max-width: 100%;
+    border-radius: 5px;
+  }
+  
+  .product h3 {
+    font-size: 16px;
+    margin: 10px 0;
+  }
+  
+  .price {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .price-slider {
+    width: 100%;
+    margin: 10px 0;
+  }
+  
+  .price-range {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #666;
+  }
+  
+  
+  .original-price {
+    text-decoration: line-through;
+    font-size: 14px;
+    color: #999;
+    margin-left: 5px;
+  }
+  
+  .discount {
+    color: #d9534f;
+    font-size: 14px;
+    margin-left: 5px;
+  }
+  
+
+  .products {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  
+  .product {
+    background: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.2s;
+  }
+  
+  .product:hover {
+    transform: scale(1.05);
+  }
+  
+  .product img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+  
+  .product h3 {
+    font-size: 16px;
+    margin: 10px 0;
+  }
+  
+  .price {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .original-price {
+    text-decoration: line-through;
+    font-size: 14px;
+    color: #999;
+    margin-left: 5px;
+  }
+  
+  .discount {
+    color: #d9534f;
+    font-size: 14px;
+    margin-left: 5px;
+  }
+  
+
+  .clothes {
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #f9f9f9;
+   
+  }
+  
+  .clothes-img {
+    width: 295px;
+    height: 298px;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+  
+  .clothes-description {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0;
+  }
+  
+  .ratings {
+    display: flex;
+    gap: 10px;
+    color: rgba(128, 128, 128, 0.979);
+    font-size: 16px;
+  }
+  
+  .price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .discount {
+    font-size: 14px;
+    color: gray;
+    margin-left: 10px;
+    text-decoration: line-through;
+  }
+  
+  .discount-percentage {
+    font-size: 14px;
+    color: #ff3333;
+    background-color: #f7c0c05e;
+    padding: 2px 6px;
+    border-radius: 10px;
+  }
+  
+</style>
+<body>
+  <div class="container">
+    <header class="breadcrumb">
+      <a href="#">Home</a> > <span>Casual</span>
+    </header>
+    <h1>Casual</h1>
+    <div class="main-content">
+      <aside class="filters">
+        <h2>Filters</h2>
+        <div class="filter-section">
+          <h3>Category</h3>
+          <ul>
+            <li><a href="#">T-shirts</a></li>
+            <li><a href="#">Shorts</a></li>
+            <li><a href="#">Shirts</a></li>
+            <li><a href="#">Hoodie</a></li>
+            <li><a href="#">Jeans</a></li>
+          </ul>
+        </div>
+        <div class="filter-section">
+          <h3>Price</h3>
+          <input id="price-slider" type="range" min="50" max="200" value="125" class="price-slider">
+          <div class="price-range">
+            <span id="min-price">$50</span>
+            <span id="current-price">$125</span>
+            <span id="max-price">$200</span>
+          </div>
+        </div>
+        
+        
+        <div class="filter-section">
+          <h3>Colors</h3>
+          <div class="color-options">
+            <span class="color red"></span>
+            <span class="color green"></span>
+            <span class="color blue"></span>
+            <span class="color yellow"></span>
+            <span class="color orange"></span>
+            <span class="color black"></span>
+          </div>
+        </div>
+        <div class="filter-section">
+          <h3>Size</h3>
+          <div class="size-options">
+            <button>XX-Small</button>
+            <button>X-Small</button>
+            <button>Small</button>
+            <button>Medium</button>
+            <button class="selected">Large</button>
+            <button>X-Large</button>
+          </div>
+        </div>
+      </aside>
+      <section class="product-list">
+        <div class="product-header">
+          <p>Showing products</p>
+          <select>
+            <option>Most Popular</option>
+            <option>Show All</option>
+            <option>Price: Low to High</option>
+            <option>Price: High to Low</option>
+          </select>
+        </div>
+        <div id="products" class="products">
+          <!-- Dynamic products will be injected here -->
+        </div>
+      </section>
+      
+    </div>
+  </div>
+
+  <script>
+   document.addEventListener('DOMContentLoaded', () => {
+  const slider = document.getElementById("price-slider");
+  const currentPrice = document.getElementById("current-price");
+
+  //To  Add event listener to update the displayed price dynamically
+  slider.addEventListener("input", () => {
+    currentPrice.textContent = `$${slider.value}`;
+    filterProductsByPrice(slider.value);
+  });
+
+  //To  Function to filter products by price range
+  function filterProductsByPrice(maxPrice) {
+  const productContainer = document.getElementById("products");
+  const products = JSON.parse(localStorage.getItem("products")) || [];
+
+  const filteredProducts = products.filter(product => product.price <= parseInt(maxPrice));
+
+  //To  Render filtered products
+  if (filteredProducts.length === 0) {
+    productContainer.innerHTML = '<p>No products found in this price range.</p>';
+  } else {
+    productContainer.innerHTML = filteredProducts
+      .map(
+        product => `
+        <div class="clothes" data-id="${product.id}">
+          <img src="${product.image}" class="clothes-img" alt="${product.name}" />
+          <h2 class="clothes-description">${product.name}</h2>
+          <p class="ratings">
+            ${product.rating || "Ratings:- 4.5/5"}
+          </p>
+          <h2 class="price">$${product.price}</h2>
+        </div>
+      `
+      )
+      .join('');
+
+    //To  Add click event to each product
+    document.querySelectorAll('.clothes').forEach(productDiv => {
+      productDiv.addEventListener('click', () => {
+        const productId = productDiv.getAttribute('data-id');
+        const selectedProduct = products.find(product => product.id === productId);
+        if (selectedProduct) {
+          localStorage.setItem('selectedProduct', JSON.stringify(selectedProduct));
+          window.location.href = 'product-details.html';
+        }
+      });
+    });
+  }
+}
+
+  //To  Initial rendering
+  filterProductsByPrice(slider.value);
+});
+
+
+      </script>
+</body>
+</html>

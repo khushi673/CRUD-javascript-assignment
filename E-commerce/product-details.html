@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details</title>
+  <link rel="stylesheet" href="product-details-styles.css">
+</head>
+<style>/* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+    
+    /* Breadcrumb Styles */
+    .breadcrumb {
+      padding: 20px;
+      background-color: #f9f9f9;
+      font-size: 14px;
+      color: #555;
+    }
+    
+    .breadcrumb a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    
+    .breadcrumb a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Main Product Details Container */
+    .product-details {
+      display: flex;
+      gap: 40px;
+      margin: 40px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Product Image Section */
+    .images {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      border-radius: 8px;
+      padding: 20px;
+    }
+    
+    .images img {
+      max-width: 100%;
+      max-height: 400px;
+      border-radius: 8px;
+    }
+    
+    /* Product Details Section */
+    .details {
+      flex: 2;
+      padding: 20px;
+    }
+    
+    .details h1 {
+      font-size: 28px;
+      color: #333;
+      margin-bottom: 10px;
+    }
+    
+    .ratings {
+      margin: 10px 0;
+      font-size: 16px;
+      color: #f39c12;
+    }
+    
+    #product-price {
+      font-size: 24px;
+      color: #27ae60;
+      margin: 10px 0;
+    }
+    
+    #product-description {
+      margin: 20px 0;
+      height: 33px;
+      width: 590px;
+      line-height: 1.5;
+      color: #555;
+    }
+    
+    /* Product Options Section */
+    .options h3 {
+      font-size: 18px;
+      margin: 20px 0 10px;
+      color: #333;
+    }
+    
+    #product-colors .color {
+      display: inline-block;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      margin-right: 10px;
+      border: 2px solid #ddd;
+      cursor: pointer;
+    }
+    
+    #product-colors .color:hover {
+      border: 2px solid #333;
+    }
+    
+    #product-sizes button {
+      padding: 10px 15px;
+      margin: 5px;
+      font-size: 16px;
+      border: 1px solid #ddd;
+      background-color: #f7f7f7;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    
+    #product-sizes button:hover {
+      background-color: #007bff;
+      color: #fff;
+    }
+    
+    /* Add to Cart Button */
+    #add-to-cart {
+      margin-top: 20px;
+      padding: 15px 30px;
+      font-size: 18px;
+      color: #fff;
+      background-color: #007bff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    #add-to-cart:hover {
+      background-color: #0056b3;
+    }
+
+/* Color Section Styling */
+.color-section h3 {
+  font-size: 16px;
+  margin-top: 40px;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+/* Color Options */
+.color-options {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+/* Color Circle */
+.color-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #665c49; /* Default color */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.color-circle:hover {
+  transform: scale(1.1);
+  border-color: #ccc;
+}
+
+/* Selected State */
+.color-circle.selected {
+  border: 2px solid #000;
+}
+
+.color-circle.selected .checkmark {
+  font-size: 18px;
+  color: white;
+  visibility: visible;
+}
+
+/* Checkmark */
+.checkmark {
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  visibility: hidden;
+}
+
+ .product-selection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 300px;
+}
+
+.quantity-selector {
+  display: flex;
+  justify-content: center;
+  height: 52px;
+  width: 170px;
+  border-radius: 62px;
+  align-items: center;
+  background-color:#f5f5f5 ;
+  gap: 16px;
+} */
+/* size and add to cart styling */
+
+.product-selection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 300px;
+}
+
+.size-selector p {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #333;
+}
+
+.sizes {
+  display: flex;
+  height: 46px;
+  width: 420px;
+  margin-top: 20px;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.size {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background-color: #f5f5f5;
+  color: #333;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.size:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+.size.active {
+  background-color: #000;
+  color: #fff;
+}
+
+
+.decrease, .increase {
+  width: 32px;
+  height: 32px;
+  border: 0px solid #ccc;
+  border-radius: 50%;
+  background-color: #f5f5f5;
+  color: #333;
+  text-align: center;
+  line-height: 30px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.decrease:hover, .increase:hover {
+  background-color: #ddd;
+}
+
+.quantity {
+  font-size: 16px;
+  color: #333;
+}
+
+.add-to-cart {
+  padding: 12px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
+  transition: background-color 0.3s;
+}
+
+.add-to-cart:hover {
+  background-color: #333;
+}
+
+    </style>
+<body>
+  <header class="breadcrumb">
+    <a href="category-page.html">Home</a> > <span id="product-category">T-shirts</span>
+  </header>
+
+  <div class="product-details">
+    <div class="images">
+      <img id="product-main-image" src="" alt="Product Image">
+    </div>
+    <div class="details">
+      <h1 id="product-name"></h1>
+      <div class="ratings">
+        <span id="product-rating"></span>
+      </div>
+      <p id="product-price"></p>
+      <p id="product-description"></p>
+
+      <div class="color-section">
+          <h3>Select Colors</h3>
+          <div class="color-options">
+            <div class="color-circle selected">
+              <span class="checkmark">✔</span>
+            </div>
+            <div class="color-circle" style="background-color: #2e4c45;">
+              <span class="checkmark">✔</span>
+            </div>
+            <div class="color-circle" style="background-color: #2f2f52;">
+              <span class="checkmark">✔</span>
+            </div>
+          </div>
+        </div>
+        <div class="product-selection">
+            <div class="size-selector">
+              <p>Choose Size</p>
+              <div class="sizes">
+                <button class="size small">Small</button>
+                <button class="size medium">Medium</button>
+                <button class="size large ">Large</button>
+                <button class="size x-large">X-Large</button>
+              </div>
+            </div>
+        
+            <div class="quantity-selector">
+              <button class="decrease">-</button>
+              <span class="quantity">1</span>
+              <button class="increase">+</button>
+            </div>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+    </div>
+    </div>
+    </div>
+  </div>
+
+  <script>document.addEventListener('DOMContentLoaded', () => {
+    const selectedProduct = JSON.parse(localStorage.getItem('selectedProduct'));
+  
+    if (selectedProduct) {
+      //To  Populate product details
+      document.getElementById('product-main-image').src = selectedProduct.image;
+      document.getElementById('product-name').textContent = selectedProduct.name;
+      document.getElementById('product-rating').textContent = selectedProduct.rating || "Ratings:- 4.5/5";
+      document.getElementById('product-price').textContent = `$${selectedProduct.price}`;
+      document.getElementById('product-description').textContent = selectedProduct.description || "This is a great product.";
+  
+      //To  Populate colors
+      const colorsContainer = document.getElementById('product-colors');
+      selectedProduct.colors.forEach(color => {
+        const colorSpan = document.createElement('span');
+        colorSpan.className = `color ${color}`;
+        colorsContainer.appendChild(colorSpan);
+      });
+  
+      //To  Populate sizes
+      const sizesContainer = document.getElementById('product-sizes');
+      selectedProduct.sizes.forEach(size => {
+        const sizeButton = document.createElement('button');
+        sizeButton.textContent = size;
+        sizesContainer.appendChild(sizeButton);
+      });
+    } else {
+      alert('Product not found!');
+    }
+  });
+
+
+   //To  JavaScript to toggle the selected color
+   document.addEventListener('DOMContentLoaded', () => {
+      const colorCircles = document.querySelectorAll('.color-circle');
+
+      colorCircles.forEach(circle => {
+        circle.addEventListener('click', () => {
+          //To  Remove the 'selected' class from all circles
+          colorCircles.forEach(c => c.classList.remove('selected'));
+
+          //To  Add the 'selected' class to the clicked circle
+          circle.classList.add('selected');
+        });
+      });
+    });
+
+//To  Get all size buttons
+const sizeButtons = document.querySelectorAll('.size');
+
+//To  Add click event to each size button
+sizeButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    //To  Remove the "active" class from all buttons
+    sizeButtons.forEach((btn) => btn.classList.remove('active'));
+
+    //To  Add the "active" class to the clicked button
+    button.classList.add('active');
+  });
+});
+
+//To  Quantity functionality
+const decreaseButton = document.querySelector('.decrease');
+const increaseButton = document.querySelector('.increase');
+const quantityDisplay = document.querySelector('.quantity');
+
+//To  Initial quantity
+let quantity = 1;
+
+//To  Decrease quantity
+decreaseButton.addEventListener('click', () => {
+  if (quantity > 1) {
+    quantity--;
+    quantityDisplay.textContent = quantity;
+  }
+});
+
+//To  Increase quantity
+increaseButton.addEventListener('click', () => {
+  quantity++;
+  quantityDisplay.textContent = quantity;
+});
+
+  </script>
+</body>
+</html>
