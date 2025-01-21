@@ -409,6 +409,29 @@
         element.disabled = isDisabled;
       });
     }
+
+    // ///////////////////////////////////
+    function previewImage(event) {
+  const reader = new FileReader();
+  reader.onload = function () {
+    const imgElement = document.createElement('img');
+    imgElement.src = reader.result; // Base64 data
+    document.getElementById("image-placeholder").replaceWith(imgElement);
+
+    // Example: Save the image base64 data to localStorage as part of product object
+    const newProduct = {
+      id: document.getElementById("id-number").value,
+      name: document.getElementById("name").value,
+      price: parseFloat(document.getElementById("price").value),
+      image: reader.result, // Save base64 image data
+    };
+    const products = JSON.parse(localStorage.getItem("products")) || [];
+    products.push(newProduct);
+    localStorage.setItem("products", JSON.stringify(products));
+  };
+  reader.readAsDataURL(event.target.files[0]);
+}
+
   </script>
 </body>
 </html>
