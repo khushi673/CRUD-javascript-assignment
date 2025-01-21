@@ -384,6 +384,8 @@
   function filterProductsByPrice(maxPrice) {
   const productContainer = document.getElementById("products");
   const products = JSON.parse(localStorage.getItem("products")) || [];
+  
+
 
   const filteredProducts = products.filter(product => product.price <= parseInt(maxPrice));
 
